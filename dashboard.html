@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nisse 2000 - Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Nisse 2000 Dashboard</h1>
+        
+        <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 20px 0; text-align: center;">
+            <p style="margin: 5px 0;">Inloggad som: <strong id="username">Användare</strong></p>
+            <p style="margin: 5px 0;">
+                Behörighet: <span id="roleDisplay" class="role-badge">Läser in...</span>
+            </p>
+        </div>
+
+        <div id="accessWarning" class="alert alert-info" style="display: none;">
+            💡 <strong>Tips:</strong> Som nisse har du begränsad åtkomst. Kanske kan du hitta ett sätt att få högre behörighet? Kolla URL:en... 🤔
+        </div>
+
+        <h2>🎄 Systemfunktioner</h2>
+        
+        <div class="dashboard-grid">
+            <a href="#" onclick="checkAccess('snalla-barn')" class="dashboard-btn icon-list">
+                Snälla barn-listan
+            </a>
+            
+            <a href="presentinventering.html" class="dashboard-btn icon-gifts">
+                Presentinventering
+            </a>
+            
+            <a href="schema.html" class="dashboard-btn icon-schedule">
+                Nisse-schema
+            </a>
+            
+            <a href="ren-status.html" class="dashboard-btn icon-reindeer">
+                Ren-status
+            </a>
+            
+            <a href="onskelista.html" class="dashboard-btn icon-wishlist">
+                Önskeliste-centralen
+            </a>
+            
+            <a href="#" onclick="checkAccess('loggar')" class="dashboard-btn icon-logs">
+                Systemloggar
+            </a>
+        </div>
+
+        <div style="margin-top: 30px; padding: 15px; background: #fff3cd; border-radius: 8px;">
+            <p><strong>🎯 Nivå 2: URL-manipulation</strong></p>
+            <p>Vissa sidor kräver högre behörighet. Titta på URL:en - ser du parametern <code>role=nisse</code>? 🤔</p>
+            <p>Kanske finns det andra roller i systemet? Testa att ändra den till något annat...</p>
+        </div>
+
+        <div style="margin-top: 20px; text-align: center;">
+            <a href="login.html" style="color: #c41e3a; text-decoration: none;">🚪 Logga ut</a>
+        </div>
+    </div>
+
+    <script>
+        // Läs role från URL
+        const urlParams = new URLSearchParams(window.location.search);
+        let currentRole = urlParams.get('role') || 'nisse';
+
+        // Uppdatera display
+        function updateRoleDisplay() {
+            const roleDisplay = document.getElementById('roleDisplay');
+            const accessWarning = document.getElementById('accessWarning');
+            
+            if (currentRole === 'nisse') {
+                roleDisplay.textContent = '🎅 Nisse (Begränsad åtkomst)';
+                roleDisplay.className = 'role-badge role-nisse';
+                accessWarning.style.display = 'block';
+            } else if (currentRole === 'tomte') {
+                roleDisplay.textContent = '🎄 Tomte (Utökad åtkomst)';
+                roleDisplay.className = 'role-badge role-tomte';
+                accessWarning.style.display = 'none';
+            } else if (currentRole === 'admin') {
+                roleDisplay.textContent = '⭐ Admin (Full åtkomst)';
+                roleDisplay.className = 'role-badge role-admin';
+                accessWarning.style.display = 'none';
+            } else {
+                roleDisplay.textContent = '❓ ' + currentRole + ' (Okänd roll)';
+                roleDisplay.className = 'role-badge';
+                accessWarning.style.display = 'none';
+            }
+        }
+
+        function checkAccess(page) {
+            if (page === 'snalla-barn') {
+                if (currentRole === 'tomte' || currentRole === 'admin') {
+                    window.location.href = 'snalla-barn.html?role=' + currentRole;
+                } else {
+                    alert('❌ Åtkomst nekad!\n\nDu behöver minst "tomte"-behörighet för att se denna sida.\n\n💡 Hint: Kan du ändra din roll i URL:en?');
+                }
+            } else if (page === 'loggar') {
+                if (currentRole === 'admin') {
+                    window.location.href = 'loggar.html?role=' + currentRole;
+                } else if (currentRole === 'tomte') {
+                    alert('❌ Åtkomst nekad!\n\nSystemloggar kräver "admin"-behörighet.\n\n💡 Hint: Du är nära! Finns det en högre roll än tomte?');
+                } else {
+                    alert('❌ Åtkomst nekad!\n\nDu behöver högre behörighet för att se systemloggar.\n\n💡 Hint: Försök först att få "tomte"-behörighet genom att ändra URL:en.');
+                }
+            }
+        }
+
+        // Kör när sidan laddas
+        updateRoleDisplay();
+    </script>
+</body>
+</html>

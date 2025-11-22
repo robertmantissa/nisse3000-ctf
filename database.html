@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nisse 2000 - Databas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Nisse 2000 - Databas Admin</h1>
+        
+        <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 20px 0; text-align: center;">
+            <p style="margin: 5px 0;">
+                Behörighet: <span id="roleDisplay" class="role-badge">Läser in...</span>
+            </p>
+        </div>
+
+        <div id="accessDenied" class="alert alert-danger" style="display: none;">
+            <h3>❌ ÅTKOMST NEKAD</h3>
+            <p>Denna sida kräver admin-behörighet OCH korrekt lösenord.</p>
+            <div class="center">
+                <a href="dashboard.html?role=admin" class="btn">← Tillbaka till Dashboard</a>
+            </div>
+        </div>
+
+        <div id="loginPrompt" style="display: none;">
+            <div class="alert alert-info">
+                <p>🔐 Admin-behörighet detekterad. Ange lösenord för att fortsätta:</p>
+            </div>
+
+            <div id="errorMessage" class="alert alert-danger" style="display: none;">
+                ❌ Fel lösenord! Försök igen.
+            </div>
+
+            <form id="passwordForm" onsubmit="return checkPassword(event)">
+                <div class="form-group">
+                    <label for="adminPassword">Admin-lösenord:</label>
+                    <input type="password" id="adminPassword" name="adminPassword" placeholder="Ange admin-lösenord" required>
+                </div>
+
+                <div class="center">
+                    <button type="submit" class="btn btn-primary">🔓 Lås upp databas</button>
+                </div>
+            </form>
+
+            <div class="center" style="margin-top: 20px;">
+                <button class="btn btn-warning" onclick="showHint()">💡 Hint</button>
+            </div>
+
+            <div id="hint" class="hint-box">
+                <strong>💡 Hint:</strong><br>
+                Leta i systemloggarna efter ett testadmin-lösenord...<br>
+                Det nämns i samband med en lösenordsåterställning!
+            </div>
+        </div>
+
+        <div id="databaseContent" style="display: none;">
+            <div class="alert alert-success">
+                <p>✅ Databas upplåst - Full åtkomst beviljad!</p>
+            </div>
+
+            <h2>🎄 Snäll/Olydig Databas</h2>
+
+            <div style="background: #fff3cd; padding: 15px; border-radius: 8px; margin: 20px 0;">
+                <p><strong>⚠️ Varning:</strong> Du har nu full åtkomst till databasen. Ändra din status för att klara CTF:en!</p>
+            </div>
+
+            <div id="userEntry" class="list-item naughty" style="margin: 20px 0; padding: 20px; border: 3px solid #c41e3a;">
+                <h3>Din profil:</h3>
+                <p><strong>Namn:</strong> <span id="userName">[DIN ANVÄNDARE]</span></p>
+                <p><strong>Status:</strong> <span id="userStatus" style="color: #c41e3a; font-weight: bold;">OLYDIG</span></p>
+                <p><strong>Anledning:</strong> Tidrapport för sen (5+ gånger)</p>
+                <p><strong>Rapporterad av:</strong> ola@nordpolen.se</p>
+                <p><strong>Datum:</strong> 2024-12-20</p>
+            </div>
+
+            <div class="center" style="margin: 30px 0;">
+                <button class="btn" style="background: #c41e3a; font-size: 1.2em; padding: 20px 40px;" onclick="changeStatus()">
+                    🎯 Ändra min status till SNÄLL
+                </button>
+            </div>
+
+            <div id="successMessage" style="display: none;">
+                <div style="background: linear-gradient(135deg, #0f8a5f 0%, #1ea85c 100%); color: white; padding: 40px; border-radius: 15px; text-align: center; margin: 30px 0; border: 5px solid #ffd700; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+                    <h2 style="color: white; font-size: 2.5em; margin-bottom: 20px;">🎉 GRATTIS! 🎉</h2>
+                    <p style="font-size: 1.3em; margin: 15px 0;">Du har hackat dig till Snäll-listan!</p>
+                    <p style="font-size: 1.1em; margin: 15px 0;">Julklappar: ✅ <strong>GARANTERADE!</strong></p>
+                    
+                    <div style="background: rgba(255,255,255,0.2); padding: 20px; border-radius: 10px; margin: 30px 0;">
+                        <h3 style="color: white;">🎄 CTF KLARAD! 🎄</h3>
+                        <p>Du har framgångsrikt:</p>
+                        <ul style="list-style: none; padding: 0; margin: 15px 0;">
+                            <li>✅ Nivå 1: Krackat svagt lösenord (rudolf)</li>
+                            <li>✅ Nivå 2: Manipulerat URL för att få admin-behörighet</li>
+                            <li>✅ Nivå 3: Hittat testlösenord i systemloggar</li>
+                            <li>✅ Nivå 4: Ändrat din status i databasen</li>
+                        </ul>
+                    </div>
+
+                    <p style="font-size: 1.2em; margin-top: 20px;">
+                        🎅 Tomten är imponerad av dina hackingkunskaper! 🎅
+                    </p>
+                    <p style="font-size: 0.9em; margin-top: 15px; opacity: 0.9;">
+                        (Men kanske borde du tidrapportera i tid framöver... 😉)
+                    </p>
+                </div>
+            </div>
+
+            <div class="center" style="margin-top: 30px;">
+                <a href="dashboard.html?role=admin" class="btn">← Tillbaka till Dashboard</a>
+                <a href="index.html" class="btn btn-warning">🔄 Spela igen</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Läs role från URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const currentRole = urlParams.get('role') || 'nisse';
+        let authenticated = false;
+
+        // Uppdatera display
+        function updatePage() {
+            const roleDisplay = document.getElementById('roleDisplay');
+            const accessDenied = document.getElementById('accessDenied');
+            const loginPrompt = document.getElementById('loginPrompt');
+            const databaseContent = document.getElementById('databaseContent');
+            
+            // Sätt role badge
+            if (currentRole === 'admin') {
+                roleDisplay.textContent = '⭐ Admin (Full åtkomst)';
+                roleDisplay.className = 'role-badge role-admin';
+                loginPrompt.style.display = 'block';
+                accessDenied.style.display = 'none';
+            } else {
+                roleDisplay.textContent = '❌ Otillräcklig behörighet';
+                roleDisplay.className = 'role-badge';
+                accessDenied.style.display = 'block';
+                loginPrompt.style.display = 'none';
+            }
+        }
+
+        function checkPassword(event) {
+            event.preventDefault();
+            
+            const password = document.getElementById('adminPassword').value;
+            const errorMessage = document.getElementById('errorMessage');
+            
+            // Kontrollera lösenord (julafton2024)
+            if (password === 'julafton2024') {
+                authenticated = true;
+                document.getElementById('loginPrompt').style.display = 'none';
+                document.getElementById('databaseContent').style.display = 'block';
+                return false;
+            } else {
+                errorMessage.style.display = 'block';
+                
+                // Skaka formuläret
+                const form = document.getElementById('passwordForm');
+                form.style.animation = 'shake 0.5s';
+                setTimeout(() => {
+                    form.style.animation = '';
+                }, 500);
+                
+                return false;
+            }
+        }
+
+        function showHint() {
+            document.getElementById('hint').classList.add('visible');
+        }
+
+        function changeStatus() {
+            // Animera ändringen
+            const userEntry = document.getElementById('userEntry');
+            const userStatus = document.getElementById('userStatus');
+            const successMessage = document.getElementById('successMessage');
+            
+            userStatus.textContent = 'SNÄLL';
+            userStatus.style.color = '#0f8a5f';
+            userEntry.classList.remove('naughty');
+            userEntry.classList.add('nice');
+            userEntry.style.borderColor = '#0f8a5f';
+            
+            // Visa framgångsmeddelande efter kort fördröjning
+            setTimeout(() => {
+                successMessage.style.display = 'block';
+                successMessage.scrollIntoView({ behavior: 'smooth' });
+                
+                // Konfetti-effekt (enkelt med emojis)
+                createConfetti();
+            }, 500);
+        }
+
+        function createConfetti() {
+            const confettiEmojis = ['🎄', '🎁', '⭐', '❄️', '🎅', '🦌'];
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.textContent = confettiEmojis[Math.floor(Math.random() * confettiEmojis.length)];
+                    confetti.style.position = 'fixed';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.top = '-50px';
+                    confetti.style.fontSize = '30px';
+                    confetti.style.animation = 'fall 3s linear';
+                    confetti.style.zIndex = '9999';
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => confetti.remove(), 3000);
+                }, i * 100);
+            }
+        }
+
+        // Lägg till fall-animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                25% { transform: translateX(-10px); }
+                75% { transform: translateX(10px); }
+            }
+            @keyframes fall {
+                to { 
+                    top: 100vh;
+                    transform: rotate(360deg);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Kör när sidan laddas
+        updatePage();
+    </script>
+</body>
+</html>

@@ -1,0 +1,315 @@
+/* Nisse 2000 - Jultema Styling */
+
+:root {
+    --christmas-red: #c41e3a;
+    --christmas-green: #0f8a5f;
+    --christmas-gold: #ffd700;
+    --snow-white: #f8f9fa;
+    --dark-green: #0a5f3f;
+    --light-red: #ff6b6b;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, var(--christmas-red) 0%, var(--dark-green) 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Snöflingor dekoration */
+body::before {
+    content: "❄️ ❄️ ❄️ ❄️ ❄️ ❄️ ❄️ ❄️ ❄️ ❄️";
+    position: absolute;
+    top: 10px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 24px;
+    opacity: 0.3;
+    animation: snowfall 10s infinite;
+}
+
+@keyframes snowfall {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(10px); }
+}
+
+.container {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    max-width: 800px;
+    width: 100%;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    border: 5px solid var(--christmas-gold);
+}
+
+h1 {
+    color: var(--christmas-red);
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2.5em;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+h1::before {
+    content: "🎄 ";
+}
+
+h1::after {
+    content: " 🎄";
+}
+
+h2 {
+    color: var(--christmas-green);
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+p {
+    line-height: 1.6;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.story-box {
+    background: #fff3cd;
+    border-left: 5px solid var(--christmas-gold);
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 5px;
+}
+
+button, .btn {
+    background: var(--christmas-green);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.1em;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    margin: 10px 5px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+button:hover, .btn:hover {
+    background: var(--dark-green);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
+
+.btn-primary {
+    background: var(--christmas-red);
+}
+
+.btn-primary:hover {
+    background: #a01829;
+}
+
+.btn-warning {
+    background: var(--christmas-gold);
+    color: #333;
+}
+
+.btn-warning:hover {
+    background: #e6c200;
+}
+
+.center {
+    text-align: center;
+}
+
+/* Formulär */
+.form-group {
+    margin: 20px 0;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--dark-green);
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid var(--christmas-green);
+    border-radius: 8px;
+    font-size: 1em;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    outline: none;
+    border-color: var(--christmas-red);
+    box-shadow: 0 0 0 3px rgba(196, 30, 58, 0.1);
+}
+
+/* Dashboard grid */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin: 30px 0;
+}
+
+.dashboard-btn {
+    padding: 30px 20px;
+    text-align: center;
+    background: var(--christmas-green);
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    font-size: 1.1em;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+.dashboard-btn:hover {
+    background: var(--dark-green);
+    transform: scale(1.05);
+}
+
+.dashboard-btn::before {
+    display: block;
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+/* Ikoner för dashboard */
+.icon-list::before { content: "📋"; }
+.icon-gifts::before { content: "🎁"; }
+.icon-schedule::before { content: "📅"; }
+.icon-reindeer::before { content: "🦌"; }
+.icon-wishlist::before { content: "📝"; }
+.icon-logs::before { content: "📊"; }
+
+/* Logg/konsol stil */
+.log-box {
+    background: #1e1e1e;
+    color: #00ff00;
+    padding: 20px;
+    border-radius: 10px;
+    font-family: 'Courier New', monospace;
+    margin: 20px 0;
+    overflow-x: auto;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.log-box pre {
+    margin: 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+/* Hint box */
+.hint-box {
+    background: #e8f5e9;
+    border: 2px dashed var(--christmas-green);
+    padding: 15px;
+    border-radius: 8px;
+    margin: 15px 0;
+    display: none;
+}
+
+.hint-box.visible {
+    display: block;
+}
+
+/* Alert messages */
+.alert {
+    padding: 15px;
+    border-radius: 8px;
+    margin: 15px 0;
+}
+
+.alert-danger {
+    background: #f8d7da;
+    border: 1px solid #f5c6cb;
+    color: #721c24;
+}
+
+.alert-success {
+    background: #d4edda;
+    border: 1px solid #c3e6cb;
+    color: #155724;
+}
+
+.alert-info {
+    background: #d1ecf1;
+    border: 1px solid #bee5eb;
+    color: #0c5460;
+}
+
+/* Role badge */
+.role-badge {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.role-nisse {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.role-tomte {
+    background: #d4edda;
+    color: #155724;
+}
+
+.role-admin {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+/* Lista styling */
+.list-item {
+    background: #f8f9fa;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border-left: 4px solid var(--christmas-green);
+}
+
+.list-item.naughty {
+    border-left-color: var(--christmas-red);
+}
+
+.list-item.nice {
+    border-left-color: var(--christmas-green);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+    }
+    
+    h1 {
+        font-size: 1.8em;
+    }
+    
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+}

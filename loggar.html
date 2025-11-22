@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nisse 2000 - Systemloggar</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Systemloggar</h1>
+        
+        <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 20px 0; text-align: center;">
+            <p style="margin: 5px 0;">
+                Behörighet: <span id="roleDisplay" class="role-badge">Läser in...</span>
+            </p>
+        </div>
+
+        <div id="accessDenied" class="alert alert-danger" style="display: none;">
+            <h3>❌ ÅTKOMST NEKAD</h3>
+            <p>Denna sida kräver admin-behörighet. Din nuvarande roll har inte tillräcklig åtkomst.</p>
+            <div class="center">
+                <a href="dashboard.html?role=nisse" class="btn">← Tillbaka till Dashboard</a>
+            </div>
+        </div>
+
+        <div id="logContent" style="display: none;">
+            <div class="alert alert-success">
+                <p>✅ Åtkomst beviljad - Admin-behörighet verifierad</p>
+            </div>
+
+            <h2>📊 Nisse 2000 Systemloggar</h2>
+
+            <div class="log-box">
+<pre>
+[2024-12-20 08:15:23] SYSTEM START - Nisse 2000 v1.0
+[2024-12-20 08:15:24] Database connected: naughty_nice_list.db
+[2024-12-20 08:15:25] Loading user profiles...
+[2024-12-20 08:15:26] Loaded 1,847,293 profiles
+
+[2024-12-20 09:32:11] LOGIN ATTEMPT - User: ola@nordpolen.se - SUCCESS
+[2024-12-20 09:32:45] USER ACTION - ola@nordpolen.se added entry to naughty list
+[2024-12-20 09:32:46] NAUGHTY LIST UPDATE:
+                      Name: [DIN ANVÄNDARE]
+                      Reason: Tidrapport för sen (5+ gånger)
+                      Reported by: ola@nordpolen.se
+                      Status: OLYDIG
+[2024-12-20 09:33:01] LOGOUT - ola@nordpolen.se
+
+[2024-12-20 12:45:33] ADMIN NOTE: Database backup scheduled för 24 Dec 00:00
+[2024-12-20 12:45:34] ADMIN NOTE: Password reset for test account
+                      Username: testadmin
+                      New password: julafton2024
+                      
+[2024-12-20 14:22:19] WARNING: Failed login attempt - incorrect password
+[2024-12-20 14:22:31] WARNING: Failed login attempt - incorrect password  
+[2024-12-20 14:22:44] WARNING: Failed login attempt - incorrect password
+
+[2024-12-20 16:08:12] MAINTENANCE: Security patch applied (CVE-2024-XMAS)
+[2024-12-20 16:08:13] NOTE: Direct database access still available at:
+                      /database.html?role=admin
+                      
+[2024-12-20 18:30:45] BACKUP COMPLETE - naughty_nice_list_20241220.bak
+[2024-12-20 18:30:46] SYSTEM STATUS: All systems operational
+[2024-12-20 18:30:47] Active sessions: 3
+[2024-12-20 18:30:48] Pending gift assignments: 1,847,293
+
+[2024-12-22 10:15:00] CRITICAL: Julafton närmar sig!
+[2024-12-22 10:15:01] STATUS: 24 timmar kvar till leverans
+[2024-12-22 10:15:02] Snälla barn: 1,845,123
+[2024-12-22 10:15:03] Olydiga barn: 2,170 (inklusive dig!)
+
+[2024-12-22 11:45:33] LOGIN ATTEMPT - User: rudolf@nordpolen.se - SUCCESS
+[2024-12-22 11:46:01] USER ACTION - rudolf@nordpolen.se checked weather conditions
+[2024-12-22 11:47:12] LOGOUT - rudolf@nordpolen.se
+</pre>
+            </div>
+
+            <div style="margin-top: 30px; padding: 15px; background: #fff3cd; border-radius: 8px;">
+                <p><strong>🎯 Nivå 3: Hitta databas-access</strong></p>
+                <p>I loggarna kan du hitta ledtrådar om hur du kan ändra din status i databasen...</p>
+                <p>💡 Leta efter URL:er, lösenord eller andra viktiga detaljer!</p>
+            </div>
+
+            <div class="center" style="margin-top: 30px;">
+                <a href="dashboard.html?role=admin" class="btn">← Tillbaka till Dashboard</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Läs role från URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const currentRole = urlParams.get('role') || 'nisse';
+
+        // Uppdatera display
+        function updatePage() {
+            const roleDisplay = document.getElementById('roleDisplay');
+            const accessDenied = document.getElementById('accessDenied');
+            const logContent = document.getElementById('logContent');
+            
+            // Sätt role badge
+            if (currentRole === 'admin') {
+                roleDisplay.textContent = '⭐ Admin (Full åtkomst)';
+                roleDisplay.className = 'role-badge role-admin';
+                logContent.style.display = 'block';
+                accessDenied.style.display = 'none';
+            } else if (currentRole === 'tomte') {
+                roleDisplay.textContent = '🎄 Tomte (Utökad åtkomst)';
+                roleDisplay.className = 'role-badge role-tomte';
+                accessDenied.style.display = 'block';
+                logContent.style.display = 'none';
+            } else {
+                roleDisplay.textContent = '🎅 Nisse (Begränsad åtkomst)';
+                roleDisplay.className = 'role-badge role-nisse';
+                accessDenied.style.display = 'block';
+                logContent.style.display = 'none';
+            }
+        }
+
+        // Kör när sidan laddas
+        updatePage();
+    </script>
+</body>
+</html>

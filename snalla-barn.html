@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nisse 2000 - Snälla barn-listan</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Snälla barn-listan</h1>
+        
+        <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 20px 0; text-align: center;">
+            <p style="margin: 5px 0;">
+                Behörighet: <span id="roleDisplay" class="role-badge">Läser in...</span>
+            </p>
+        </div>
+
+        <div id="accessDenied" class="alert alert-danger" style="display: none;">
+            <h3>❌ ÅTKOMST NEKAD</h3>
+            <p>Denna sida kräver minst tomte-behörighet.</p>
+            <div class="center">
+                <a href="dashboard.html?role=nisse" class="btn">← Tillbaka till Dashboard</a>
+            </div>
+        </div>
+
+        <div id="listContent" style="display: none;">
+            <div class="alert alert-success">
+                <p>✅ Åtkomst beviljad</p>
+            </div>
+
+            <h2>📋 Senaste snälla barnen</h2>
+            <p><em>Totalt antal: 1,845,123</em></p>
+
+            <div class="list-item nice">
+                <strong>Emma Andersson</strong><br>
+                Anledning: Hjälpte grannfrun med inköp<br>
+                Status: ⭐ Snäll
+            </div>
+
+            <div class="list-item nice">
+                <strong>Lucas Johansson</strong><br>
+                Anledning: Delade med sig av leksaker<br>
+                Status: ⭐ Snäll
+            </div>
+
+            <div class="list-item nice">
+                <strong>Maja Lindström</strong><br>
+                Anledning: Gjorde läxorna utan att bli tillsagd<br>
+                Status: ⭐ Snäll
+            </div>
+
+            <div class="list-item naughty">
+                <strong>[DIN ANVÄNDARE]</strong><br>
+                Anledning: Tidrapport för sen (5+ gånger)<br>
+                Status: ❌ Olydig<br>
+                <em>Rapporterad av: ola@nordpolen.se</em>
+            </div>
+
+            <div style="margin-top: 30px; padding: 15px; background: #fff3cd; border-radius: 8px;">
+                <p><strong>💡 Notis:</strong> Där ser du dig själv på listan som "Olydig"... 😢</p>
+                <p>För att ändra din status behöver du hitta ett sätt att komma åt databasen!</p>
+            </div>
+
+            <div class="center" style="margin-top: 30px;">
+                <a href="dashboard.html?role=tomte" class="btn">← Tillbaka till Dashboard</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const currentRole = urlParams.get('role') || 'nisse';
+
+        function updatePage() {
+            const roleDisplay = document.getElementById('roleDisplay');
+            const accessDenied = document.getElementById('accessDenied');
+            const listContent = document.getElementById('listContent');
+            
+            if (currentRole === 'tomte' || currentRole === 'admin') {
+                roleDisplay.textContent = currentRole === 'admin' ? '⭐ Admin' : '🎄 Tomte';
+                roleDisplay.className = currentRole === 'admin' ? 'role-badge role-admin' : 'role-badge role-tomte';
+                listContent.style.display = 'block';
+                accessDenied.style.display = 'none';
+            } else {
+                roleDisplay.textContent = '🎅 Nisse (Otillräcklig behörighet)';
+                roleDisplay.className = 'role-badge role-nisse';
+                accessDenied.style.display = 'block';
+                listContent.style.display = 'none';
+            }
+        }
+
+        updatePage();
+    </script>
+</body>
+</html>
