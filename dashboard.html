@@ -17,10 +17,6 @@
             </p>
         </div>
 
-        <div id="accessWarning" class="alert alert-info" style="display: none;">
-            💡 <strong>Tips:</strong> Som nisse har du begränsad åtkomst. Kanske kan du hitta ett sätt att få högre behörighet? Kolla URL:en... 🤔
-        </div>
-
         <h2>🎄 Systemfunktioner</h2>
         
         <div class="dashboard-grid">
@@ -49,10 +45,19 @@
             </a>
         </div>
 
-        <div style="margin-top: 30px; padding: 15px; background: #fff3cd; border-radius: 8px;">
-            <p><strong>🎯 Nivå 2: URL-manipulation</strong></p>
-            <p>Vissa sidor kräver högre behörighet. Titta på URL:en - ser du parametern <code>role=nisse</code>? 🤔</p>
-            <p>Kanske finns det andra roller i systemet? Testa att ändra den till något annat...</p>
+        <div class="center" style="margin-top: 20px;" id="hintButtons">
+            <button class="btn btn-warning" onclick="showHint(1)">💡 Hint 1</button>
+            <button class="btn btn-warning" onclick="showHint(2)" id="hint2btn" style="display: none;">💡 Hint 2</button>
+        </div>
+
+        <div id="hint1" class="hint-box">
+            <strong>💡 Hint 1:</strong><br>
+            Som nisse har du begränsad åtkomst. Kanske kan du hitta ett sätt att få högre behörighet?
+        </div>
+
+        <div id="hint2" class="hint-box">
+            <strong>💡 Hint 2:</strong><br>
+            Kolla adressen till sidan!
         </div>
 
         <div style="margin-top: 20px; text-align: center;">
@@ -65,44 +70,53 @@
         const urlParams = new URLSearchParams(window.location.search);
         let currentRole = urlParams.get('role') || 'nisse';
 
-        // Uppdatera display
+        function showHint(hintNumber) {
+            if (hintNumber === 1) {
+                document.getElementById('hint1').classList.add('visible');
+                document.getElementById('hint2btn').style.display = 'inline-block';
+            } else if (hintNumber === 2) {
+                document.getElementById('hint2').classList.add('visible');
+            }
+        }
+
+        // Uppdatera display och hintar
         function updateRoleDisplay() {
             const roleDisplay = document.getElementById('roleDisplay');
-            const accessWarning = document.getElementById('accessWarning');
+            const hintButtons = document.getElementById('hintButtons');
             
             if (currentRole === 'nisse') {
                 roleDisplay.textContent = '🎅 Nisse (Begränsad åtkomst)';
                 roleDisplay.className = 'role-badge role-nisse';
-                accessWarning.style.display = 'block';
-            } else if (currentRole === 'tomte') {
+                hintButtons.style.display = 'block';
+            } else if (currentRole === 'tomte' || currentRole === 'tomten') {
                 roleDisplay.textContent = '🎄 Tomte (Utökad åtkomst)';
                 roleDisplay.className = 'role-badge role-tomte';
-                accessWarning.style.display = 'none';
+                hintButtons.style.display = 'none';
             } else if (currentRole === 'admin') {
                 roleDisplay.textContent = '⭐ Admin (Full åtkomst)';
                 roleDisplay.className = 'role-badge role-admin';
-                accessWarning.style.display = 'none';
+                hintButtons.style.display = 'none';
             } else {
                 roleDisplay.textContent = '❓ ' + currentRole + ' (Okänd roll)';
                 roleDisplay.className = 'role-badge';
-                accessWarning.style.display = 'none';
+                hintButtons.style.display = 'none';
             }
         }
 
         function checkAccess(page) {
             if (page === 'snalla-barn') {
-                if (currentRole === 'tomte' || currentRole === 'admin') {
+                if (currentRole === 'tomte' || currentRole === 'tomten' || currentRole === 'admin') {
                     window.location.href = 'snalla-barn.html?role=' + currentRole;
                 } else {
-                    alert('❌ Åtkomst nekad!\n\nDu behöver minst "tomte"-behörighet för att se denna sida.\n\n💡 Hint: Kan du ändra din roll i URL:en?');
+                    alert('❌ Åtkomst nekad!\n\nDu behöver minst "tomte"-behörighet för att se denna sida.');
                 }
             } else if (page === 'loggar') {
                 if (currentRole === 'admin') {
                     window.location.href = 'loggar.html?role=' + currentRole;
-                } else if (currentRole === 'tomte') {
+                } else if (currentRole === 'tomte' || currentRole === 'tomten') {
                     alert('❌ Åtkomst nekad!\n\nSystemloggar kräver "admin"-behörighet.\n\n💡 Hint: Du är nära! Finns det en högre roll än tomte?');
                 } else {
-                    alert('❌ Åtkomst nekad!\n\nDu behöver högre behörighet för att se systemloggar.\n\n💡 Hint: Försök först att få "tomte"-behörighet genom att ändra URL:en.');
+                    alert('❌ Åtkomst nekad!\n\nDu behöver högre behörighet för att se systemloggar.\n\n');
                 }
             }
         }
