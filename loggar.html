@@ -18,7 +18,7 @@
 
         <div id="accessDenied" class="alert alert-danger" style="display: none;">
             <h3>❌ ÅTKOMST NEKAD</h3>
-            <p>Denna sida kräver admin-behörighet. Din nuvarande roll har inte tillräcklig åtkomst.</p>
+            <p>Denna sida kräver Chief Tomte Officer-behörighet. Din nuvarande roll har inte tillräcklig åtkomst.</p>
             <div class="center">
                 <a href="dashboard.html?role=nisse" class="btn">← Tillbaka till Dashboard</a>
             </div>
@@ -26,7 +26,7 @@
 
         <div id="logContent" style="display: none;">
             <div class="alert alert-success">
-                <p>✅ Åtkomst beviljad - Admin-behörighet verifierad</p>
+                <p>✅ Åtkomst beviljad - Chief Tomte Officer-behörighet verifierad</p>
             </div>
 
             <h2>📊 Nisse 2000 Systemloggar</h2>
@@ -83,7 +83,7 @@
             </div>
 
             <div class="center" style="margin-top: 30px;">
-                <a href="dashboard.html?role=admin" class="btn">← Tillbaka till Dashboard</a>
+                <a href="dashboard.html?role=cto" class="btn">← Tillbaka till Dashboard</a>
             </div>
         </div>
     </div>
@@ -100,14 +100,14 @@
             const logContent = document.getElementById('logContent');
             
             // Sätt role badge
-            if (currentRole === 'admin') {
-                roleDisplay.textContent = '⭐ Admin (Full åtkomst)';
-                roleDisplay.className = 'role-badge role-admin';
+            if (currentRole === 'cto') {
+                roleDisplay.textContent = '⭐ Chief Tomte Officer (Full åtkomst)';
+                roleDisplay.className = 'role-badge role-cto';
                 logContent.style.display = 'block';
                 accessDenied.style.display = 'none';
-            } else if (currentRole === 'tomte') {
-                roleDisplay.textContent = '🎄 Tomte (Utökad åtkomst)';
-                roleDisplay.className = 'role-badge role-tomte';
+            } else if (currentRole === 'tomten') {
+                roleDisplay.textContent = '🎄 Tomten (Utökad åtkomst)';
+                roleDisplay.className = 'role-badge role-tomten';
                 accessDenied.style.display = 'block';
                 logContent.style.display = 'none';
             } else {
