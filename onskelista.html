@@ -31,20 +31,20 @@
         </div>
 
         <div class="list-item">
-            <strong>Oscar, 10 år</strong><br>
+            <strong>Ella, 10 år</strong><br>
             Önskar: Lego Technic, RC-bil<br>
             Status: ✅ Behandlas
         </div>
 
         <div class="list-item">
-            <strong>Ella, 8 år</strong><br>
+            <strong>Oskar, 8 år</strong><br>
             Önskar: Häst (leksak), ridkläder<br>
             Status: ✅ Behandlas
         </div>
 
         <div class="list-item naughty">
-            <strong>[DIN ANVÄNDARE]</strong><br>
-            Önskar: Presenter, julafton<br>
+            <strong id="teamNameDisplay">[DIN ANVÄNDARE]</strong><br>
+            Önskar: First filings, domäner, att folk loggar ur Dynamics och ett 5090<br>
             Status: ❌ NEKAD - Olydig-listan
         </div>
 
@@ -58,5 +58,12 @@
             <a href="dashboard.html?role=nisse" class="btn">← Tillbaka till Dashboard</a>
         </div>
     </div>
+    <script>
+        (function setTeamName(){
+            const tn = (localStorage.getItem('teamName') || '').trim();
+            const el = document.getElementById('teamNameDisplay');
+            if (tn && el) el.textContent = tn;
+        })();
+    </script>
 </body>
 </html>

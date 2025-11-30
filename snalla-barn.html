@@ -51,7 +51,7 @@
             </div>
 
             <div class="list-item naughty">
-                <strong id="teamNameDisplay">[DIN ANVÄNDARE]</strong><br>
+                <strong>[DIN ANVÄNDARE]</strong><br>
                 Anledning: Tidrapport för sen (5+ gånger)<br>
                 Status: ❌ Olydig<br>
                 <em>Rapporterad av: ola@nordpolen.se</em>
@@ -76,9 +76,6 @@
             const roleDisplay = document.getElementById('roleDisplay');
             const accessDenied = document.getElementById('accessDenied');
             const listContent = document.getElementById('listContent');
-            const teamNameEl = document.getElementById('teamNameDisplay');
-            const tn = (localStorage.getItem('teamName') || '').trim();
-            if (teamNameEl && tn) teamNameEl.textContent = tn;
             
             if (currentRole === 'tomten' || currentRole === 'cto') {
                 roleDisplay.textContent = currentRole === 'cto' ? '⭐ Chief Tomte Officer' : '🎄 Tomten';
@@ -92,6 +89,33 @@
                 listContent.style.display = 'none';
             }
         }
+
+        // Enkelt: ersätt alla förekomster av [DIN ANVÄNDARE] med lag/namn
+        (function replacePlaceholder(){
+            function getTeamName() {
+                try {
+                    const ls = (localStorage.getItem('teamName') || '').trim();
+                    if (ls) return ls;
+                } catch (e) { /* localStorage kan vara avstängd vid file:// */ }
+                const qp = new URLSearchParams(window.location.search).get('team') || '';
+                if (qp.trim()) return qp.trim();
+                const hn = (window.name || '').trim();
+                if (hn) return hn;
+                const hash = (location.hash || '').replace(/^#/, '').trim();
+                if (hash) return hash;
+                return '';
+            }
+            const tn = getTeamName();
+            if (!tn) return;
+            const target = '[DIN ANVÄNDARE]';
+            const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null);
+            const nodes = [];
+            while (walker.nextNode()) {
+                const txt = walker.currentNode.nodeValue || '';
+                if (txt.includes(target)) nodes.push(walker.currentNode);
+            }
+            nodes.forEach(n => { n.nodeValue = n.nodeValue.replaceAll(target, tn); });
+        })();
 
         updatePage();
     </script>

@@ -35,7 +35,7 @@
 
             <form id="passwordForm" onsubmit="return checkPassword(event)">
                 <div class="form-group">
-                    <label for="adminPassword">Admin-lösenord:</label>
+                    <label for="adminPassword">CTO-lösenord:</label>
                     <input type="password" id="adminPassword" name="adminPassword" placeholder="Ange admin-lösenord" required>
                 </div>
 
@@ -91,8 +91,8 @@
                         <h3 style="color: white;">🎄 CTF KLARAD! 🎄</h3>
                         <p>Du har framgångsrikt:</p>
                         <ul style="list-style: none; padding: 0; margin: 15px 0;">
-                            <li>✅ Nivå 1: Krackat svagt lösenord (rudolf)</li>
-                            <li>✅ Nivå 2: Manipulerat URL för att få admin-behörighet</li>
+                            <li>✅ Nivå 1: Gissat svagt lösenord </li>
+                            <li>✅ Nivå 2: Manipulerat URL för att få cto-behörighet</li>
                             <li>✅ Nivå 3: Hittat testlösenord i systemloggar</li>
                             <li>✅ Nivå 4: Ändrat din status i databasen</li>
                         </ul>
@@ -128,9 +128,9 @@
             const databaseContent = document.getElementById('databaseContent');
             
             // Sätt role badge
-            if (currentRole === 'admin') {
-                roleDisplay.textContent = '⭐ Admin (Full åtkomst)';
-                roleDisplay.className = 'role-badge role-admin';
+            if (currentRole === 'cto') {
+                roleDisplay.textContent = '⭐ Chief Tomte Officer (Full åtkomst)';
+                roleDisplay.className = 'role-badge role-cto';
                 loginPrompt.style.display = 'block';
                 accessDenied.style.display = 'none';
             } else {
@@ -148,7 +148,7 @@
             const errorMessage = document.getElementById('errorMessage');
             
             // Kontrollera lösenord (julafton2024)
-            if (password === 'julafton2024') {
+            if (password === 'julfest2025') {
                 authenticated = true;
                 document.getElementById('loginPrompt').style.display = 'none';
                 document.getElementById('databaseContent').style.display = 'block';
@@ -228,6 +228,13 @@
             }
         `;
         document.head.appendChild(style);
+
+        // Ersätt namn med teamName om finns
+        (function setTeamName(){
+            const tn = (localStorage.getItem('teamName') || '').trim();
+            const el = document.getElementById('userName');
+            if (tn && el) el.textContent = tn;
+        })();
 
         // Kör när sidan laddas
         updatePage();

@@ -118,8 +118,8 @@
             }
         }
 
-        // Sätt lag/lagledarnamn i loggutskrift
-        (function setTeamNameInLogs(){
+        // Sätt team-namn i loggraden
+        (function setTeamName(){
             const tn = (localStorage.getItem('teamName') || '').trim();
             const el = document.getElementById('teamNameInLogs');
             if (tn && el) el.textContent = tn;

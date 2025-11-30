@@ -71,13 +71,6 @@
         let currentRole = urlParams.get('role') || 'nisse';
         const currentRoleLower = (currentRole || '').toLowerCase();
 
-        // Sätt "Inloggad som" till lag/lagledarnamn om det finns
-        (function setTeamName(){
-            const tn = (localStorage.getItem('teamName') || '').trim();
-            const userEl = document.getElementById('username');
-            if (tn && userEl) userEl.textContent = tn;
-        })();
-
         function showHint(hintNumber) {
             if (hintNumber === 1) {
                 document.getElementById('hint1').classList.add('visible');
@@ -91,6 +84,9 @@
         function updateRoleDisplay() {
             const roleDisplay = document.getElementById('roleDisplay');
             const hintButtons = document.getElementById('hintButtons');
+            const userEl = document.getElementById('username');
+            const teamName = (localStorage.getItem('teamName') || '').trim();
+            if (teamName && userEl) userEl.textContent = teamName;
             
             const logsBtn = document.getElementById('logsBtn');
             if (currentRoleLower === 'nisse') {

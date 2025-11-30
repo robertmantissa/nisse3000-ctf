@@ -34,6 +34,17 @@
             </ul>
         </div>
 
+        <!-- Ange lag / ledarnamn en gång här -->
+        <div id="teamNameEditor" style="background:#eef6ff; border:2px solid #4a90e2; padding:18px; border-radius:10px; margin:25px 0;">
+            <h3 style="margin-top:0; color:#1f4e79; text-align:center;">🏷️ Ditt lag / ledarnamn</h3>
+            <p style="font-size:0.95em; color:#333; text-align:center; margin-top:4px;">Sparas lokalt och visas automatiskt på sidorna.</p>
+            <div style="display:flex; gap:10px; justify-content:center; margin-top:12px; flex-wrap:wrap;">
+                <input id="teamNameInput" type="text" minlength="2" placeholder="Ange lag / ledarnamn" style="padding:10px 14px; font-size:1em; border:2px solid #1f4e79; border-radius:6px; min-width:240px;" />
+                <button id="saveTeamNameBtn" type="button" style="background:#1f4e79; color:#fff; border:none; padding:10px 20px; font-size:1em; border-radius:6px; cursor:pointer;">Spara namn</button>
+            </div>
+            <div id="teamNameStatus" style="margin-top:10px; text-align:center; font-weight:bold; font-size:0.9em;"></div>
+        </div>
+
         <div class="center">
             <a href="login.html" class="btn btn-primary" style="font-size: 1.3em; padding: 20px 40px;">
                 🎄 Börja hacka! 🎄
@@ -44,5 +55,35 @@
             <p>© 2000 Tomtens IT-avdelning | Nisse 2000 v1.0 | Säkerhet: ⭐☆☆☆☆</p>
         </div>
     </div>
+    <script>
+    (function() {
+        var input = document.getElementById('teamNameInput');
+        var statusEl = document.getElementById('teamNameStatus');
+        var saveBtn = document.getElementById('saveTeamNameBtn');
+        if (!input || !saveBtn) return;
+        var existing = (localStorage.getItem('teamName') || '').trim();
+        if (existing) {
+            input.value = existing;
+            statusEl.textContent = 'Aktuellt namn: ' + existing;
+            statusEl.style.color = '#0f8a5f';
+        }
+        saveBtn.addEventListener('click', function () {
+            var v = (input.value || '').trim();
+            if (v.length < 2) {
+                statusEl.textContent = 'Namnet måste vara minst 2 tecken.';
+                statusEl.style.color = '#c41e3a';
+                return;
+            }
+            localStorage.setItem('teamName', v);
+            statusEl.textContent = 'Sparat! Aktuellt namn: ' + v;
+            statusEl.style.color = '#0f8a5f';
+        });
+        input.addEventListener('keydown', function(e){
+            if (e.key === 'Enter') {
+                saveBtn.click();
+            }
+        });
+    })();
+    </script>
 </body>
 </html>
