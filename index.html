@@ -52,56 +52,82 @@
         </div>
     </div>
     <script>
+        /* Index Client Module — Obfuscated sprinkles */
         // Matrix background
         (function matrix(){
             const canvas = document.getElementById('matrix');
             const ctx = canvas.getContext('2d');
             let w, h, cols, drops;
-            const glyphs = '01ØΛ+=*#$@田冖艹卜土*'.split('');
-            function resize(){
-                w = canvas.width = window.innerWidth;
-                h = canvas.height = window.innerHeight;
-                cols = Math.floor(w / 14);
-                drops = Array(cols).fill(0);
-            }
+            const G='MDEuwqDCoCArKyMkQCPvu78q5pWj5oCL5YiwIOKXkyAqIOCkluKXlSDvu78='; // base64 noise + glyphs
+            const glyphs = (function(){ try { return atob(G).replace(/[^01ØΛ+=*#$@田冖艹卜土*]/g,'').split(''); } catch(e){ return '01ØΛ+=*#$@田冖艹卜土*'.split(''); } })();
+            function resize(){ w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; cols = Math.floor(w / 14); drops = Array(cols).fill(0); }
             function draw(){
-                ctx.fillStyle = 'rgba(0,0,0,0.12)';
-                ctx.fillRect(0,0,w,h);
-                ctx.font = '14px monospace';
+                ctx.fillStyle = 'rgba(0,0,0,0.12)'; ctx.fillRect(0,0,w,h); ctx.font = '14px monospace';
                 for(let i=0;i<cols;i++){
                     const txt = glyphs[Math.floor(Math.random()*glyphs.length)];
-                    const x = i * 14;
-                    const y = drops[i] * 18;
+                    const x = i * 14; const y = drops[i] * 18;
                     ctx.fillStyle = 'hsl(' + (110 + Math.random()*40) + ' 80% 55%)';
                     ctx.fillText(txt, x, y);
-                    if (y > h && Math.random() > 0.965) { drops[i] = 0; } else { drops[i]++; }
+                    drops[i] = (y > h && Math.random() > 0.965) ? 0 : (drops[i]+1);
                 }
                 requestAnimationFrame(draw);
             }
-            window.addEventListener('resize', resize);
-            resize();
-            draw();
+            window.addEventListener('resize', resize); resize(); draw();
         })();
 
         (function(){
+            function X(s){ try { return decodeURIComponent(escape(atob(s))); } catch(e){ return ''; } }
             const input = document.getElementById('teamNameInput');
             const statusEl = document.getElementById('teamNameStatus');
             const btn = document.getElementById('saveTeamNameBtn');
             function setMsg(msg, ok){ if(!statusEl) return; statusEl.textContent = msg; statusEl.style.color = ok? '#0f8a5f':'#c41e3a'; }
-            function load(){
-                let existing='';
-                try { existing=(localStorage.getItem('teamName')||'').trim(); } catch(e){}
-                if(existing){ input.value=existing; setMsg('Aktuellt namn: '+existing,true); }
-            }
-            function save(){
-                const v=(input.value||'').trim();
-                if(v.length<2){ setMsg('Minst 2 tecken.', false); return; }
-                try { localStorage.setItem('teamName', v); } catch(e){}
-                setMsg('Sparat: '+v, true);
-            }
+            function load(){ let existing=''; try { existing=(localStorage.getItem('teamName')||'').trim(); } catch(e){} if(existing){ input.value=existing; setMsg(X('QWt0dWVsbHQgbmFtbDog')+existing,true); } }
+            function save(){ const v=(input.value||'').trim(); if(v.length<2){ setMsg(X('TWluc3QgMiB0ZWNrZW4u'), false); return; } try { localStorage.setItem('teamName', v); } catch(e){} setMsg(X('U3BhcmF0OiA=')+v, true); }
             if(btn) btn.addEventListener('click', save);
             if(input) input.addEventListener('keydown', e=>{ if(e.key==='Enter') save(); });
             load();
+
+            // Hidden egg: team seed (unused)
+            window.__TeamSeed = atob('U0VFRDozN2I=');
+        })();
+    </script>
+    <script>
+        // Annoying right-click + shortcut blockers (CTF flavor)
+        (function(){
+            const baitMsg = '🛡️ Nisse 3000 skyddar källkoden. Högerklick inaktiverat.';
+            function blockContext(e){ e.preventDefault(); return false; }
+            function blockMouse(e){ if(e.button===2 || e.which===3){ alert(baitMsg); e.preventDefault(); return false; } }
+            function blockKeys(e){
+                const k=e.key.toLowerCase();
+                const ctrl=e.ctrlKey||e.metaKey; const sh=e.shiftKey;
+                if((ctrl&&(k==='u'||k==='s'||k==='p'||k==='i')) || k==='f12' || (ctrl&&sh&&(k==='i'||k==='j'||k==='c'))){
+                    alert(baitMsg); e.preventDefault(); return false;
+                }
+            }
+            document.addEventListener('contextmenu', blockContext, { capture:true });
+            document.addEventListener('mousedown', blockMouse, { capture:true });
+            document.addEventListener('keydown', blockKeys, { capture:true });
+        })();
+    </script>
+    <script>
+        // Konami reveal: show Admin link when sequence entered
+        (function(){
+            const seq=['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+            let i=0;
+            function reveal(){
+                let btn=document.getElementById('_hbtn');
+                if(!btn){
+                    btn=document.createElement('a');
+                    btn.id='_hbtn'; btn.href='admin.html'; btn.textContent='🔐 Admin';
+                    btn.style.cssText='display:inline-block;margin-left:12px;color:#c41e3a;text-decoration:none;';
+                    const go=document.querySelector('.go');
+                    if(go){ go.appendChild(btn); } else { document.body.appendChild(btn); }
+                } else { btn.style.display='inline-block'; btn.textContent='🔐 Admin'; }
+            }
+            document.addEventListener('keydown',e=>{
+                if(e.key.toLowerCase()===seq[i].toLowerCase()){ i++; } else { i=0; }
+                if(i===seq.length){ reveal(); i=0; }
+            },{capture:true});
         })();
     </script>
 </body>

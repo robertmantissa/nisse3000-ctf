@@ -1,3 +1,7 @@
+<!--
+Okej då, du rundade vårt  Nisse grade källkodsskydd. Grattis!
+S09OQU1JIA==
+-->
 <!DOCTYPE html>
 <html lang="sv">
 <head>
@@ -62,7 +66,7 @@
 
         <div id="hint2" class="hint-box">
             <strong>💡 Hint 2:</strong><br>
-             Att använda sitt husdjurs namn som lösenord är en klassiker. Även nisse har ett favorithusdjur. Som lyser upp hans tillvaro <br>            
+             Att använda sitt husdjurs namn som lösenord är en klassiker. Alla behöver vi någon som lyser upp ens tillvaro<br>            
         </div>
 
         <!-- Modal popup for Tomten warning -->
@@ -91,109 +95,167 @@
 
         <div style="margin-top: 20px; text-align: center;">
             <a href="index.html" style="color: #0f8a5f; text-decoration: none;">← Tillbaka till start</a>
+            <a id="_hbtn" href="admin.html" style="display:none; margin-left:12px; color:#c41e3a; text-decoration:none;">Admin</a>
         </div>
     </div>
 
     <script>
-        let hintsShown = 0;
+        /*
+         ⛔ Do not modify. Proprietary Nisse 3000 Client Module v13.37
+         Hash: 0xDEADC0DE — Build Channel: sleigh-prod — Signed: 🦌
+         Fun fact: The flag is definitely not here: ZmxhZ19pc19ub3RfX2luX3RoaXNfZmlsZQ==
+        */
+        (function(){
+            function X(s){ try { return decodeURIComponent(escape(window.atob(s))); } catch(e){ return ''; } }
+            function B(s){ try { return window.atob(s); } catch(e){ return ''; } }
+            function H(s){ try { return s.replace(/../g, h=>String.fromCharCode(parseInt(h,16))); } catch(e){ return ''; } }
+            function E(fnStr){ return (new Function(fnStr))(); }
+            const K = {
+                a: 'aWxlZ2l0', 
+                b: 'YXN2cwogNjMuMy4y', 
+                c: '7368616b65', 
+                d: '727564b2b66c66', 
+                e: 'cnVkb2xm', 
+                f: 'ZGJvYXJk', 
+                g: 'ZGFzaGJvYXJkLmh0bWw/cm9sZT0=', 
+                h: 'YWRtaW4=', 
+                i: 'dG9tdGVu', 
+                j: 'bmlzc2U=', 
+                m: 'QW5pbWF0aW9u',
+                n: 'ZXJyb3I=', 
+                o: 'bG9naW5Gb3Jt',
+                p: 'dXNlcm5hbWU=',
+                q: 'cGFzc3dvcmQ=',
+                r: 'aGludDE=',
+                s: 'aGludDI=',
+                t: 'dG9tdGVuTW9kYWw=',
+                u: 'ZXJyb3JNb2RhbA==',
+                v: 'ZXJyb3JNb2RhbFRleHQ=',
+                w: 'c2hha2U=',
+                x: 'QVNWUzo', 
+                y: 'Ni4zLjI=',
+            };
 
-        function showHint(hintNumber) {
-            if (hintNumber === 1) {
-                document.getElementById('hint1').classList.add('visible');
-                document.getElementById('hint2btn').style.display = 'inline-block';
-                hintsShown = 1;
-            } else if (hintNumber === 2) {
-                document.getElementById('hint2').classList.add('visible');
-                hintsShown = 2;
+            // Inget att se här, gå vidare
+            window.__NisseSleighCfg = {
+                reindeers: B('W1wiUnVkb2xmXCIsXCJDb21ldFwiLFwiQmxpdHplblwiLFwiRHJhc2VocmFwcG9uXCJd'),
+                fuel: H('3432363837'), // 42687 (lol)
+                sparkles: B('dHJ1ZQ=='),
+                signature: '🦌🛷🎄'
+            };
+
+            let Z=0; // hintsShown
+            function S(h){
+                if(h===1){ document.getElementById(X(K.r)).classList.add('visible');
+                    document.getElementById('hint2btn').style.display='inline-block'; Z=1;
+                } else if(h===2){ document.getElementById(X(K.s)).classList.add('visible'); Z=2; }
             }
-        }
 
-        function showError(message) {
-            const modal = document.getElementById('errorModal');
-            const text = document.getElementById('errorModalText');
-            if (text) text.textContent = message;
-            if (modal) modal.style.display = 'block';
-            // Skaka formuläret visuellt för extra feedback
-            const form = document.getElementById('loginForm');
-            if (form) {
-                form.style.animation = 'shake 0.5s';
-                setTimeout(() => { form.style.animation = ''; }, 500);
-            }
-        }
-
-        function handleLogin(event) {
-            event.preventDefault();
-            const username = document.getElementById('username').value.trim();
-            const password = document.getElementById('password').value.trim();
-            const tomtenModal = document.getElementById('tomtenModal');
-
-            const lowerUser = username.toLowerCase();
-
-            // Blockera försök med 'admin' och visa ASVS-kod
-            if (lowerUser === 'admin') {
-                showError('ASVS: 6.3.2');
-                return false;
-            }
-
-            // Tomten blockeras alltid
-            if (lowerUser === 'tomten') {
-                tomtenModal.style.display = 'block';
-                return false;
-            }
-
-            // Endast tillåtna konton: nisse, tomten (tomten redan blockerat ovan)
-            const allowed = ['nisse','tomten'];
-            if (!allowed.includes(lowerUser)) {
-                showError(`Konto "${username}" finns inte i systemet.`);
-                // Automatisk hint efter första kontofel om inga hints visats
-                if (hintsShown === 0) {
-                    setTimeout(() => { showHint(1); }, 800);
+            function F(m){
+                const M=document.getElementById(X(K.u));
+                const T=document.getElementById(X(K.v));
+                if(T) T.textContent=m;
+                if(M) M.style.display='block';
+                const form=document.getElementById(X(K.o));
+                if(form){
+                    form.style.animation = H(K.c)+ ' 0.5s';
+                    setTimeout(()=>{ form.style.animation=''; },500);
                 }
-                return false;
             }
 
-            // Lösenordscheck (endast demonstrativt: rudolf)
-            if (password.toLowerCase() === 'rudolf') {
-                const targetRole = 'nisse';
-                window.location.href = 'dashboard.html?role=' + targetRole;
-                return false;
-            } else {
-                showError('Fel lösenord! Försök igen.');
-                return false;
-            }
-        }
+            function L(evt){
+                evt.preventDefault();
+                const U=(document.getElementById(X(K.p)).value||'').trim();
+                const P=(document.getElementById(X(K.q)).value||'').trim();
+                const T=document.getElementById(X(K.t));
+                const u=U.toLowerCase();
 
+                if(u===X(K.h)) { F(X(K.x)+X(K.y)); return false; }
+                if(u===X(K.i)) { if(T) T.style.display='block'; return false; }
+                const A=[X(K.j),X(K.i)];
+                if(!A.includes(u)){
+                    F('Konto "'+U+'" finns inte i systemet.');
+                    if(Z===0){ setTimeout(()=>{ S(1); },800); }
+                    return false;
+                }
+                if(P.toLowerCase()===X(K.e)){
+                    const R=X('Y3Rv'); // 'cto' decoy
+                    const N=X(K.j); // 'nisse'
+                    // choose target role (misleading decoy path)
+                    const TGT = N; // yes, still nisse
+                    window.location.href = X(K.g) + TGT;
+                    return false;
+                } else { F('Fel lösenord! Försök igen.'); return false; }
+            }
 
-        // Stäng modal via knapp eller klick på overlay
-        (function modalCloseSetup(){
-            // Tomten modal
-            const tomten = document.getElementById('tomtenModal');
-            const tomtenCloseBtn = document.getElementById('tomtenCloseBtn');
-            if (tomten) {
-                const hideTomten = () => { tomten.style.display = 'none'; };
-                if (tomtenCloseBtn) tomtenCloseBtn.addEventListener('click', hideTomten);
-                tomten.addEventListener('click', (e) => { if (e.target === tomten) hideTomten(); });
-            }
-            // Error modal
-            const err = document.getElementById('errorModal');
-            const errCloseBtn = document.getElementById('errorCloseBtn');
-            if (err) {
-                const hideErr = () => { err.style.display = 'none'; };
-                if (errCloseBtn) errCloseBtn.addEventListener('click', hideErr);
-                err.addEventListener('click', (e) => { if (e.target === err) hideErr(); });
-            }
+            window.showHint = S;
+            window.handleLogin = L;
+            window.showError = F;
+
+            // modal close setup (minified-ish)
+            (function(){
+                const t=document.getElementById(X(K.t));
+                const tb=document.getElementById('tomtenCloseBtn');
+                if(t){ const h=()=>{ t.style.display='none'; }; if(tb) tb.addEventListener('click',h); t.addEventListener('click',e=>{ if(e.target===t) h(); }); }
+                const e=document.getElementById(X(K.u));
+                const eb=document.getElementById('errorCloseBtn');
+                if(e){ const h=()=>{ e.style.display='none'; }; if(eb) eb.addEventListener('click',h); e.addEventListener('click',ev=>{ if(ev.target===e) h(); }); }
+            })();
+
+            // Add shake keyframes dynamically
+            const st=document.createElement('style');
+            st.textContent='@keyframes '+H(K.c)+'{0%,100%{transform:translateX(0)}25%{transform:translateX(-10px)}75%{transform:translateX(10px)}}';
+            document.head.appendChild(st);
+
+            // Encrypted password list
+            /*
+             -----BEGIN NISSE LIST-----
+             VHJvZGRlIGF0dCBkZXQgc2t1bGxlIHN05SBu5XQga3VsIGjkciBz5SBoYXIgbmkga29tbWl0IGZlbCwgZnVza3BlbGxlIQ==
+             CHECKSUM: 7f5a2c1e-banana-83
+             -----END NISSE LIST-----
+            */
+
+            // Hidden admin shortcut (Konami Code)
+            (function(){
+                const seq=['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+                let i=0; const btn=document.getElementById('_hbtn');
+                document.addEventListener('keydown',e=>{
+                    if(e.key.toLowerCase()===seq[i].toLowerCase()){ i++; } else { i=0; }
+                    if(i===seq.length && btn){ btn.style.display='inline-block'; btn.textContent='🔐 Admin'; i=0; }
+                },{capture:true});
+            })();
         })();
-
-        // Lägg till shake-animation
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes shake {
-                0%, 100% { transform: translateX(0); }
-                25% { transform: translateX(-10px); }
-                75% { transform: translateX(10px); }
+    </script>
+    <script>
+        // Annoying right-click + shortcut blockers (CTF flavor)
+        (function(){
+            const baitMsg = '🛡️ Secured by Nisse-grade källkodsskydd. 100 % hacker proof.';
+            function blockContext(e){ e.preventDefault(); return false; }
+            function blockMouse(e){
+                if(e.button===2 || e.which===3){ alert(baitMsg); e.preventDefault(); return false; }
             }
-        `;
-        document.head.appendChild(style);
+            function blockKeys(e){
+                const k=e.key.toLowerCase();
+                const ctrl=e.ctrlKey||e.metaKey;
+                const forbidden = (
+                    (ctrl && (k==='u' || k==='s' || k==='p' || k==='i')) || // view-source, save, print, devtools
+                    (k==='f12') ||
+                    (ctrl && shiftKeyCheck(e) && (k==='i' || k==='j' || k==='c')) // devtools combos
+                );
+                if(forbidden){ alert(baitMsg); e.preventDefault(); return false; }
+            }
+            function shiftKeyCheck(e){ return e.shiftKey; }
+            document.addEventListener('contextmenu', blockContext, { capture:true });
+            document.addEventListener('mousedown', blockMouse, { capture:true });
+            document.addEventListener('keydown', blockKeys, { capture:true });
+            // Passive decoy overlay on long right-click hold
+            let t; document.addEventListener('mousedown', (e)=>{ if(e.button===2){ t=setTimeout(()=>{
+                const d=document.createElement('div'); d.style.cssText='position:fixed;inset:0;background:rgba(196,30,58,0.08);pointer-events:none;z-index:9999';
+                d.textContent='🔍 Nej, ingen enkel väg här.'; d.style.display='flex'; d.style.alignItems='center'; d.style.justifyContent='center'; d.style.color='#c41e3a'; d.style.fontFamily='monospace'; d.style.fontSize='14px';
+                document.body.appendChild(d); setTimeout(()=>{ d.remove(); }, 1200);
+            }, 380); } }, {capture:true});
+            document.addEventListener('mouseup', ()=>{ clearTimeout(t); }, {capture:true});
+        })();
     </script>
 </body>
 </html>

@@ -241,3 +241,25 @@
     </script>
 </body>
 </html>
+
+<script>
+// Konami reveal: show Admin link when sequence entered
+(function(){
+    const seq=['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+    let i=0;
+    function reveal(){
+        let btn=document.getElementById('_hbtn');
+        if(!btn){
+            btn=document.createElement('a');
+            btn.id='_hbtn'; btn.href='admin.html'; btn.textContent='🔐 Admin';
+            btn.style.cssText='display:inline-block;margin-left:12px;color:#c41e3a;text-decoration:none;';
+            document.body.appendChild(btn);
+        } else { btn.style.display='inline-block'; btn.textContent='🔐 Admin'; }
+    }
+    document.addEventListener('keydown',e=>{
+        if(e.key.toLowerCase()===seq[i].toLowerCase()){ i++; } else { i=0; }
+        if(i===seq.length){ reveal(); i=0; }
+    },{capture:true});
+})();
+</script>
+</html>

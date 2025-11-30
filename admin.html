@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+	<meta charset="UTF-8">
+	<title>Admin</title>
+	<meta name="robots" content="noindex,nofollow">
+	<!--
+		Nisse 3000 Admin Panel v0xF00D — Build: sleigh-prod
+		If you're reading this, you're already late for gift-wrapping.
+		Fun hint: QWRtaW4gc2lkYW4gYXIgYmFyYSBieXRlIGJ1bGxhdCBiYWNrcy4=
+	-->
+	<script>
+	(function(){
+		// Tiny string decoders
+		function B(s){ try { return atob(s); } catch(e){ return s; } }
+		function H(s){ try { return s.replace(/../g, h=>String.fromCharCode(parseInt(h,16))); } catch(e){ return s; } }
+		function E(x){ return (new Function(x))(); }
+
+		// Encoded target URL pieces
+		const P1 = 'aHR0cHM6Ly8';           // 'https://'
+		const P2 = 'eW91dHUuYmU=';          // base64('youtu.be')
+		const P4 = 'L2o1YTBqVGM5UzEw';      // '/j5a0jTc9S10'
+
+		// Build final URL (correct decoding)
+		var U = B(P1) + B(P2) + B(P4);
+
+		// Self-defending-ish wrapper
+		var W = '(function(u){try{window.location.replace(u)}catch(e){window.location.href=u}})';
+		E(W+'(\''+U+'\')');
+
+		// Red herrings and decoys
+		window.__AdminCfg = {
+			audit: B('ZmFsc2U='),
+			checksum: H('373066616365'),
+			backdoor: B('bm8tb3Blbg=='), // no-open
+			banner: '🦌 Access Denied for non-admin roles'
+		};
+
+		// Extra annoyance: block context menu & devtools keys
+		const msg='🛡️ Admin-läge: högerklick inaktiverat.';
+		function k(e){const c=e.ctrlKey||e.metaKey,s=e.shiftKey,l=e.key.toLowerCase();if((c&&(l==='u'||l==='s'||l==='p'||l==='i'))||l==='f12'||(c&&s&&(l==='i'||l==='j'||l==='c'))){alert(msg);e.preventDefault();}}
+		document.addEventListener('contextmenu',e=>{e.preventDefault();}, {capture:true});
+		document.addEventListener('keydown',k,{capture:true});
+	})();
+	</script>
+</head>
+<body>
+	<h1>Admin Panel</h1>
+    <p>Om du ser detta meddelande, har du lyckats komma in i adminpanelen. Eller?</p>
+
+</body>
+</html>

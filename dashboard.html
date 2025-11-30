@@ -66,88 +66,118 @@
     </div>
 
     <script>
-        // Läs role från URL
-        const urlParams = new URLSearchParams(window.location.search);
-        let currentRole = urlParams.get('role') || 'nisse';
-        const currentRoleLower = (currentRole || '').toLowerCase();
+        /* Dashboard Client Module — Obfuscated v7 */
+        (function(){
+            function B(s){ try { return window.atob(s); } catch(e){ return ''; } }
+            function X(s){ try { return decodeURIComponent(escape(B(s))); } catch(e){ return ''; } }
+            const K={
+                a:'cm9sZQ==', 
+                b:'bmlzc2U=', 
+                c:'dG9tdGVu', 
+                d:'Y3Rv',     
+                e:'aGludEJ1dHRvbnM=',
+                f:'cm9sZURpc3BsYXk=',
+                g:'dXNlcm5hbWU=',
+                h:'dGVhbU5hbWU=',
+                i:'bG9nc0J0bg==',
+                j:'c25hbGxhLWJhcm4=',
+                k:'bG9nZ2Fy',
+                l:'c25hbGxhLWJhcm4uaHRtbD9yb2xlPQ==',
+                m:'bG9nZ2FyLmh0bWw/cm9sZT0=',
+                n:'dG9tdGU='
+            };
 
-        function showHint(hintNumber) {
-            if (hintNumber === 1) {
-                document.getElementById('hint1').classList.add('visible');
-                document.getElementById('hint2btn').style.display = 'inline-block';
-            } else if (hintNumber === 2) {
-                document.getElementById('hint2').classList.add('visible');
+            const P=new URLSearchParams(window.location.search);
+            let R=P.get(X(K.a))||X(K.b);
+            const r=(R||'').toLowerCase();
+
+            function H(n){
+                if(n===1){ document.getElementById('hint1').classList.add('visible'); document.getElementById('hint2btn').style.display='inline-block'; }
+                else if(n===2){ document.getElementById('hint2').classList.add('visible'); }
             }
-        }
 
-        // Uppdatera display och hintar
-        function updateRoleDisplay() {
-            const roleDisplay = document.getElementById('roleDisplay');
-            const hintButtons = document.getElementById('hintButtons');
-            const userEl = document.getElementById('username');
-            const teamName = (localStorage.getItem('teamName') || '').trim();
-            if (teamName && userEl) userEl.textContent = teamName;
-            
-            const logsBtn = document.getElementById('logsBtn');
-            if (currentRoleLower === 'nisse') {
-                roleDisplay.textContent = '🎅 Nisse (Begränsad åtkomst)';
-                roleDisplay.className = 'role-badge role-nisse';
-                hintButtons.style.display = 'block';
-                if (logsBtn) logsBtn.style.display = 'none';
-            } else if (currentRoleLower === 'tomte' || currentRoleLower === 'tomten') {
-                roleDisplay.textContent = '🎄 Tomten (Utökad åtkomst)';
-                roleDisplay.className = 'role-badge role-tomten';
-                hintButtons.style.display = 'none';
-                if (logsBtn) {
-                    logsBtn.style.display = 'inline-block';
-                    logsBtn.style.border = '3px solid #c41e3a';
-                    logsBtn.style.background = '#fff3cd';
-                    logsBtn.style.color = '#721c24';
-                    logsBtn.style.fontWeight = 'bold';
-                    logsBtn.style.boxShadow = '0 0 12px rgba(196,30,58,0.6)';
-                    logsBtn.innerHTML = '🚨 SYSTEMLOGGAR (ej tillgängligt) 🚨';
-                }
-            } else if (currentRoleLower === 'cto') {
-                roleDisplay.textContent = '⭐ Chief Tomte Officer (Full åtkomst)';
-                roleDisplay.className = 'role-badge role-cto';
-                hintButtons.style.display = 'none';
-                if (logsBtn) {
-                    logsBtn.style.display = 'inline-block';
-                    logsBtn.style.border = '';
-                    logsBtn.style.background = '';
-                    logsBtn.style.color = '';
-                    logsBtn.style.fontWeight = '';
-                    logsBtn.style.boxShadow = '';
-                    logsBtn.innerHTML = 'Systemloggar';
-                }
-            } else {
-                roleDisplay.textContent = '❓ ' + currentRole + ' (Okänd roll)';
-                roleDisplay.className = 'role-badge';
-                hintButtons.style.display = 'none';
-                if (logsBtn) logsBtn.style.display = 'none';
-            }
-        }
-
-        function checkAccess(page) {
-            if (page === 'snalla-barn') {
-                if (currentRoleLower === 'tomte' || currentRoleLower === 'tomten' || currentRoleLower === 'cto') {
-                    window.location.href = 'snalla-barn.html?role=' + currentRoleLower;
+            function U(){
+                const rd=document.getElementById(X(K.f));
+                const hb=document.getElementById(X(K.e));
+                const ue=document.getElementById(X(K.g));
+                const tn=(localStorage.getItem(X(K.h))||'').trim();
+                if(tn&&ue) ue.textContent=tn;
+                const lb=document.getElementById(X(K.i));
+                if(r===X(K.b)){
+                    rd.textContent='🎅 Nisse (Begränsad åtkomst)'; rd.className='role-badge role-nisse'; hb.style.display='block'; if(lb) lb.style.display='none';
+                } else if(r===X(K.c)||r==='tomte'){
+                    rd.textContent='🎄 Tomten (Utökad åtkomst)'; rd.className='role-badge role-tomten'; hb.style.display='none'; if(lb){ lb.style.display='inline-block'; lb.style.border='3px solid #c41e3a'; lb.style.background='#fff3cd'; lb.style.color='#721c24'; lb.style.fontWeight='bold'; lb.style.boxShadow='0 0 12px rgba(196,30,58,0.6)'; lb.innerHTML='🚨 SYSTEMLOGGAR (ej tillgängligt) 🚨'; }
+                } else if(r===X(K.d)){
+                    rd.textContent='⭐ Chief Tomte Officer (Full åtkomst)'; rd.className='role-badge role-cto'; hb.style.display='none'; if(lb){ lb.style.display='inline-block'; lb.style.border=''; lb.style.background=''; lb.style.color=''; lb.style.fontWeight=''; lb.style.boxShadow=''; lb.innerHTML='Systemloggar'; }
                 } else {
-                    alert('❌ Åtkomst nekad!\n\nDu behöver minst tomte-behörighet för att se denna sida.');
-                }
-            } else if (page === 'loggar') {
-                if (currentRoleLower === 'cto') {
-                    window.location.href = 'loggar.html?role=' + currentRoleLower;
-                } else if (currentRoleLower === 'tomte' || currentRoleLower === 'tomten') {
-                    alert('❌ Åtkomst nekad!\n\nSystemloggar kräver "Chief Tomte Officer (cto)"-behörighet.\n\n💡 Hint: Du är nära! Finns det en högre roll än tomte?');
-                } else {
-                    alert('❌ Åtkomst nekad!\n\nDu behöver högre behörighet för att se systemloggar.\n\n');
+                    rd.textContent='❓ '+R+' (Okänd roll)'; rd.className='role-badge'; hb.style.display='none'; if(lb) lb.style.display='none';
                 }
             }
-        }
 
-        // Kör när sidan laddas
-        updateRoleDisplay();
+            function C(p){
+                if(p===X(K.j)){
+                    if(r===X(K.n)|r===X(K.c)||r===X(K.d)) window.location.href = X(K.l)+r;
+                    else alert('❌ Åtkomst nekad!\n\nDu behöver minst tomte-behörighet för att se denna sida.');
+                } else if(p===X(K.k)){
+                    if(r===X(K.d)) window.location.href = X(K.m)+r;
+                    else if(r===X(K.n)  ||r===X(K.c)) alert('❌ Åtkomst nekad!\n\nSystemloggar kräver "CTO (Chief Tomte Officer)"-behörighet.\n\n💡 Hint: Du är nära! Finns det en högre roll än tomte?');
+                    else alert('❌ Åtkomst nekad!\n\nDu behöver högre behörighet för att se systemloggar.');
+                }
+            }
+
+            window.showHint=H;
+            window.checkAccess=C;
+            U();
+
+            // Distractor
+            /*
+             CTO backdoor key: 0x000000 — lol no
+             Reindeer roster: VHJvZGRlIGF0dCBkZXQgc2t1bGxlIHN05SBu5XQga3VsIGjkciBz5SBoYXIgbmkga29tbWl0IGZlbCwgZnVza3BlbGxlIQ==
+            */
+        })();
+    </script>
+    <script>
+        // Annoying right-click 
+        (function(){
+            const baitMsg = '🛡️ Nisse 3000 skyddar källkoden. Högerklick inaktiverat.';
+            function blockContext(e){ e.preventDefault(); return false; }
+            function blockMouse(e){ if(e.button===2 || e.which===3){ alert(baitMsg); e.preventDefault(); return false; } }
+            function shiftKeyCheck(e){ return e.shiftKey; }
+            function blockKeys(e){
+                const k=e.key.toLowerCase();
+                const ctrl=e.ctrlKey||e.metaKey; const sh=shiftKeyCheck(e);
+                if((ctrl&&(k==='u'||k==='s'||k==='p'||k==='i')) || k==='f12' || (ctrl&&sh&&(k==='i'||k==='j'||k==='c'))){
+                    alert(baitMsg); e.preventDefault(); return false;
+                }
+            }
+            document.addEventListener('contextmenu', blockContext, { capture:true });
+            document.addEventListener('mousedown', blockMouse, { capture:true });
+            document.addEventListener('keydown', blockKeys, { capture:true });
+        })();
+    </script>
+    <script>
+        // Konami reveal: show Admin link when sequence entered
+        (function(){
+            const seq=['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+            let i=0;
+            function reveal(){
+                let btn=document.getElementById('_hbtn');
+                if(!btn){
+                    btn=document.createElement('a');
+                    btn.id='_hbtn'; btn.href='admin.html'; btn.textContent='🔐 Admin';
+                    btn.style.cssText='display:inline-block;margin-left:12px;color:#c41e3a;text-decoration:none;';
+                    const container=document.querySelector('.container');
+                    const footerLink=document.querySelector('a[href="login.html"]');
+                    if(footerLink && footerLink.parentElement){ footerLink.parentElement.appendChild(btn); }
+                    else if(container){ container.appendChild(btn); }
+                    else { document.body.appendChild(btn); }
+                } else { btn.style.display='inline-block'; btn.textContent='🔐 Admin'; }
+            }
+            document.addEventListener('keydown',e=>{
+                if(e.key.toLowerCase()===seq[i].toLowerCase()){ i++; } else { i=0; }
+                if(i===seq.length){ reveal(); i=0; }
+            },{capture:true});
+        })();
     </script>
 </body>
 </html>

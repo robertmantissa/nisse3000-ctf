@@ -77,7 +77,7 @@
             const accessDenied = document.getElementById('accessDenied');
             const listContent = document.getElementById('listContent');
             
-            if (currentRole === 'tomten' || currentRole === 'cto') {
+            if (currentRole === 'tomten' || currentRole === 'tomte' || currentRole === 'cto') {
                 roleDisplay.textContent = currentRole === 'cto' ? '⭐ Chief Tomte Officer' : '🎄 Tomten';
                 roleDisplay.className = currentRole === 'cto' ? 'role-badge role-cto' : 'role-badge role-tomten';
                 listContent.style.display = 'block';
