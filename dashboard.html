@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nisse 2000 - Dashboard</title>
+    <title>Nisse 3000 - Dashboard</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>Nisse 2000 Dashboard</h1>
+        <h1>Nisse 3000 Dashboard</h1>
         
         <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 20px 0; text-align: center;">
             <p style="margin: 5px 0;">Inloggad som: <strong id="username">Användare</strong></p>
@@ -20,7 +20,7 @@
         <h2>🎄 Systemfunktioner</h2>
         
         <div class="dashboard-grid">
-            <a href="#" onclick="checkAccess('snalla-barn')" class="dashboard-btn icon-list">
+            <a href="javascript:void(0)" onclick="checkAccess('snalla-barn')" class="dashboard-btn icon-list">
                 Snälla barn-listan
             </a>
             
@@ -40,7 +40,7 @@
                 Önskeliste-centralen
             </a>
             
-            <a href="#" id="logsBtn" onclick="checkAccess('loggar')" class="dashboard-btn icon-logs">
+            <a href="javascript:void(0)" id="logsBtn" onclick="checkAccess('loggar')" class="dashboard-btn icon-logs">
                 Systemloggar
             </a>
         </div>
@@ -133,7 +133,7 @@
                 if (currentRoleLower === 'tomte' || currentRoleLower === 'tomten' || currentRoleLower === 'cto') {
                     window.location.href = 'snalla-barn.html?role=' + currentRoleLower;
                 } else {
-                    alert('❌ Åtkomst nekad!\n\nDu behöver minst "tomten"-behörighet för att se denna sida.');
+                    alert('❌ Åtkomst nekad!\n\nDu behöver minst tomte-behörighet för att se denna sida.');
                 }
             } else if (page === 'loggar') {
                 if (currentRoleLower === 'cto') {

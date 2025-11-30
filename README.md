@@ -1,10 +1,10 @@
-# 🎄 Nisse 2000: Naughty-to-Nice CTF
+# 🎄 Nisse 3000: Naughty-to-Nice CTF
 
 Ett webbaserat CTF-spel (Capture The Flag) med jultema där du hackar dig från "Olydig" till "Snäll"!
 
 ## 📖 Bakgrund
 
-Du har blivit rapporterad till Tomtens Olydig-lista av din chef Ola för att du tidrapporterat för sent för många gånger. Ditt uppdrag är att hacka Tomtens system "Nisse 2000" och ändra din status till Snäll innan julafton!
+Du har blivit rapporterad till Tomtens Olydig-lista av din chef Ola för att du tidrapporterat för sent för många gånger. Ditt uppdrag är att hacka Tomtens system "Nisse 3000" och ändra din status till Snäll innan julafton!
 
 ## 🎯 Mål
 

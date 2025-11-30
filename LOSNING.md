@@ -1,4 +1,4 @@
-# 🎄 Nisse 2000 CTF - Lösningsguide
+# 🎄 Nisse 3000 CTF - Lösningsguide
 
 **⚠️ SPOILERS AHEAD! Läs inte om du vill lösa CTF:en själv!**
 

@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nisse 2000 - Inloggning</title>
+    <title>Nisse 3000 - Inloggning</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>Nisse 2000 Inloggning</h1>
+        <h1>Nisse 3000 Inloggning</h1>
         
         <div style="background: #f8d7da; padding: 15px; border-radius: 8px; margin: 20px 0; border: 2px solid #c41e3a;">
             <p style="text-align: center; color: #721c24;">
@@ -62,8 +62,7 @@
 
         <div id="hint2" class="hint-box">
             <strong>💡 Hint 2:</strong><br>
-             Att använda sitt husdjurs namn som lösenord är en klassiker<br>
-            <small>(Tips: Försök med gemener)</small>
+             Att använda sitt husdjurs namn som lösenord är en klassiker. Även nisse har ett favorithusdjur. Som lyser upp hans tillvaro <br>            
         </div>
 
         <!-- Modal popup for Tomten warning -->
@@ -160,9 +159,6 @@
                 return false;
             } else {
                 showError('Fel lösenord! Försök igen.');
-                if (hintsShown === 0) {
-                    setTimeout(() => { showHint(1); }, 800);
-                }
                 return false;
             }
         }
