@@ -51,7 +51,7 @@
             </div>
 
             <div class="list-item naughty">
-                <strong>[DIN ANVÄNDARE]</strong><br>
+                <strong id="teamNameDisplay">[DIN ANVÄNDARE]</strong><br>
                 Anledning: Tidrapport för sen (5+ gånger)<br>
                 Status: ❌ Olydig<br>
                 <em>Rapporterad av: ola@nordpolen.se</em>
@@ -76,6 +76,9 @@
             const roleDisplay = document.getElementById('roleDisplay');
             const accessDenied = document.getElementById('accessDenied');
             const listContent = document.getElementById('listContent');
+            const teamNameEl = document.getElementById('teamNameDisplay');
+            const tn = (localStorage.getItem('teamName') || '').trim();
+            if (teamNameEl && tn) teamNameEl.textContent = tn;
             
             if (currentRole === 'tomten' || currentRole === 'cto') {
                 roleDisplay.textContent = currentRole === 'cto' ? '⭐ Chief Tomte Officer' : '🎄 Tomten';

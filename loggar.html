@@ -33,46 +33,46 @@
 
             <div class="log-box">
 <pre>
-[2024-12-20 08:15:23] SYSTEM START - Nisse 2000 v1.0
-[2024-12-20 08:15:24] Database connected: naughty_nice_list.db
-[2024-12-20 08:15:25] Loading user profiles...
-[2024-12-20 08:15:26] Loaded 1,847,293 profiles
+[2025-12-05 08:15:23] SYSTEM START - Nisse 2000 v1.0
+[2025-12-05 08:15:24] Database connected: naughty_nice_list.db
+[2025-12-05 08:15:25] Loading user profiles...
+[2025-12-05 08:15:26] Loaded 1,847,293 profiles
 
-[2024-12-20 09:32:11] LOGIN ATTEMPT - User: ola@nordpolen.se - SUCCESS
-[2024-12-20 09:32:45] USER ACTION - ola@nordpolen.se added entry to naughty list
-[2024-12-20 09:32:46] NAUGHTY LIST UPDATE:
-                      Name: [DIN ANVÄNDARE]
+[2025-12-05 09:32:11] API CONNECTION ATTEMPT FROM ZACCO DYNAMICS- SUCCESS
+[2025-12-05 09:32:45] USER ACTION - ola added entry to naughty list
+[2025-12-05 09:32:46] NAUGHTY LIST UPDATE:
+                      Name: <span id="teamNameInLogs">[DIN ANVÄNDARE]</span>
                       Reason: Tidrapport för sen (5+ gånger)
-                      Reported by: ola@nordpolen.se
+                      Reported by: Ola
                       Status: OLYDIG
-[2024-12-20 09:33:01] LOGOUT - ola@nordpolen.se
+[2025-12-05 09:33:01] LOGOUT - ola
 
-[2024-12-20 12:45:33] ADMIN NOTE: Database backup scheduled för 24 Dec 00:00
-[2024-12-20 12:45:34] ADMIN NOTE: Password reset for test account
+[2025-12-05 12:45:33] ADMIN NOTE: Database backup scheduled för 24 Dec 00:00
+[2025-12-05 12:45:34] ADMIN NOTE: Password reset for test account
                       Username: testadmin
-                      New password: julafton2024
+                      New password: julfest2025
                       
-[2024-12-20 14:22:19] WARNING: Failed login attempt - incorrect password
-[2024-12-20 14:22:31] WARNING: Failed login attempt - incorrect password  
-[2024-12-20 14:22:44] WARNING: Failed login attempt - incorrect password
+[2025-12-05 14:22:19] WARNING: Failed login attempt - incorrect password
+[2025-12-05 14:22:31] WARNING: Failed login attempt - incorrect password  
+[2025-12-05 14:22:44] WARNING: Failed login attempt - incorrect password
 
-[2024-12-20 16:08:12] MAINTENANCE: Security patch applied (CVE-2024-XMAS)
-[2024-12-20 16:08:13] NOTE: Direct database access still available at:
+[2025-12-05 16:08:12] MAINTENANCE: Security patch applied (CVE-2024-XMAS)
+[2025-12-05 16:08:13] NOTE: Direct database access still available at:
                       /database.html?role=admin
                       
-[2024-12-20 18:30:45] BACKUP COMPLETE - naughty_nice_list_20241220.bak
-[2024-12-20 18:30:46] SYSTEM STATUS: All systems operational
-[2024-12-20 18:30:47] Active sessions: 3
-[2024-12-20 18:30:48] Pending gift assignments: 1,847,293
+[2025-12-05 18:30:45] BACKUP COMPLETE - naughty_nice_list_20241220.bak
+[2025-12-05 18:30:46] SYSTEM STATUS: All systems operational
+[2025-12-05 18:30:47] Active sessions: 3
+[2025-12-05 18:30:48] Pending gift assignments: 1,847,293
 
 [2024-12-22 10:15:00] CRITICAL: Julafton närmar sig!
 [2024-12-22 10:15:01] STATUS: 24 timmar kvar till leverans
 [2024-12-22 10:15:02] Snälla barn: 1,845,123
 [2024-12-22 10:15:03] Olydiga barn: 2,170 (inklusive dig!)
 
-[2024-12-22 11:45:33] LOGIN ATTEMPT - User: rudolf@nordpolen.se - SUCCESS
-[2024-12-22 11:46:01] USER ACTION - rudolf@nordpolen.se checked weather conditions
-[2024-12-22 11:47:12] LOGOUT - rudolf@nordpolen.se
+[2024-12-22 11:45:33] LOGIN ATTEMPT - User: nisse - SUCCESS
+[2024-12-22 11:46:01] USER ACTION - nisse checked weather conditions
+[2024-12-22 11:47:12] LOGOUT - nisse
 </pre>
             </div>
 
@@ -117,6 +117,13 @@
                 logContent.style.display = 'none';
             }
         }
+
+        // Sätt lag/lagledarnamn i loggutskrift
+        (function setTeamNameInLogs(){
+            const tn = (localStorage.getItem('teamName') || '').trim();
+            const el = document.getElementById('teamNameInLogs');
+            if (tn && el) el.textContent = tn;
+        })();
 
         // Kör när sidan laddas
         updatePage();
